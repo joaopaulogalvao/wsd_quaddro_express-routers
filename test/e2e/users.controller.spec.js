@@ -28,4 +28,15 @@ describe('Users controller', function() {
 
 	});
 
+	describe('.create - GET /users', function() {
+		it('should return a status code', function(done) {
+			request(app)
+				.get('/users')
+				.end(function(err, res) {
+					console.log(res.statusCode, res.body);
+					expect(res.statusCode).to.be.equal(201);
+					done();
+				});
+		});
+	});
 });

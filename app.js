@@ -2,20 +2,14 @@
 
 var express = require('express');
 var app = express();
-var controllers = require('./controllers');
+var routers = require('./routers/index.js'); // a partir de onde estou até o index
 
-console.log(controllers.users);
+//console.log(controllers.users);
 
-app
-	.route('/users')
-	.get(controllers.users.list)
-	.post(controllers.users.create);
 
-app
-	.route('/users/:id')
-	.get(controllers.users.get) //It will get one, because I am passing the ID
- 	.put(controllers.users.update) //Put method updates
- 	.delete(controllers.users.delete);
+
+//Fazer as configurações depois da instância e antes de iniciar(do listen)
+app.use('/api',routers.api);
 
 
 app.listen(3000, serverLogInit);
