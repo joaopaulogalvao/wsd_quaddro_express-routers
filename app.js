@@ -3,6 +3,7 @@
 var express = require('express');
 var app = express();
 var routers = require('./routers/index.js'); // a partir de onde estou até o index
+var config = require('./config.js');
 
 //console.log(controllers.users);
 
@@ -10,6 +11,12 @@ var routers = require('./routers/index.js'); // a partir de onde estou até o in
 
 //Fazer as configurações depois da instância e antes de iniciar(do listen)
 app.use('/api',routers.api);
+
+var mongoose = require('mongoose');
+
+var urlDatabase = `mongodb://${config.db.host}/${config.db.name}`;
+
+mongoose.connect(urlDatabase);
 
 
 app.listen(3000, serverLogInit);

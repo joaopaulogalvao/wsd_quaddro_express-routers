@@ -18,4 +18,4 @@ router
  	.put(controllers.users.update) //Put method updates
  	.delete(controllers.users.delete);
 
- 	module.exports = router; // exports é como se tornasse o método público
+ 	module.exports = router; // exports é como se tornasse o método público	

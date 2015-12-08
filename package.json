@@ -13,7 +13,8 @@
   "author": "Joao",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.13.3"
+    "express": "^4.13.3",
+    "mongoose": "^4.2.10"
   },
   "devDependencies": {
     "chai": "^3.4.1",
