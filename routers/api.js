@@ -6,6 +6,14 @@ var router = new Router(); // nova instância de um roteador do express
 
 var controllers = require('../controllers');
 
+var bodyParser = require('body-parser');
+
+var multer = require('multer')({dest: './uploads'});
+
+router.use(bodyParser.urlencoded({extended: false}));
+router.use(bodyParser.json());
+router.use(multer.array());
+
 
 router
 	.route('/users') // it concatenates with the 
