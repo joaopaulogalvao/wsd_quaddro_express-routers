@@ -20,11 +20,9 @@ function filterByPermission (array) {
 function list (req, res) {
 		// body...
 	Users
-		.find({}) // vazio para pegar todos
-		.then((users)=>users)
-		.then(filterByPermission)
-		.catch(function(err){
-			console.log('Error ');
+		.find({}, '-__v') // retorna todos os usuários mas não quero password, o traço é menos, seria, menos password, se quiser outro, espaço e outro. esse __v é um field que o mongoose cria
+		.then(function(users){
+			res.json(users);
 		});
 		
 		//res.json(users); // if you do not pass anything it is 200
@@ -33,28 +31,38 @@ function list (req, res) {
 		// }) callback hell
 };
 
-function create (req, res) {
-	// body...
-	// user = new User(req.body);
+function create(req, res) {
+  let user = new Users(req.body);
 
-	//user
-		// .save()
-		// .then()
+  let success = function(status) {
+    console.log(status);
+     res
+      .status(201)
+      .json({
+        message: 'created'
+      });
+  };
 
-	console.log(req.body);
+  let error = function(err) {
+    console.log(err);
+    res.status(400).json({
+      message: 'algo errado'
+    });
+  };
 
-	res
-		.status(201)
-		.json({
-			message: 'created'
-		});
+  user
+    .save()
+    .then(success, error);
 }
 
 function get (req, res) {
 	// body...
 	console.log(req.params);
 
-	var user = {name: 'Seahawks'};
+	var ObjectId = require('mongodb').ObjectId;
+
+	Users
+		.findOne({_id: ObjectId(req.param.id), active: true})
 
 	res
 		.json(user);
