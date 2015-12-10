@@ -18,7 +18,7 @@ gulp.task('concatAndMinify', function () {
 
 	gulp
 		.src(scripts) //src lê arquivos
-		.pipe(concat('concat.js'))
+		.pipe(concat('gulp-concat.js'))
 		.pipe(gulp.dest('./meuTeste')); // copia os arquivos
 
 });
